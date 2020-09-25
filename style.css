@@ -1,0 +1,20 @@
+nav {
+    color: darkslategray;
+}
+
+.quizbody {
+    background-color: rgb(255, 255, 255);
+    height: 500px;
+    width: auto;
+    text-align: center;
+    padding-top: 175px;
+    color: darkslategray;
+}
+
+.quiz-name {
+    margin-bottom: 30px;
+}
+
+.start-btn {
+    margin-top: 20px;
+}
