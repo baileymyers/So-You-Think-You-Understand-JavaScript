@@ -19,14 +19,26 @@ PSUEDOCODE~
 *
 */
 
-var startButton = document.getElementsByClassName("start-btn");
-var timerText = document.getElementsByClassName("timer-text");
+var startButton = document.getElementById("start");
+var timerText = document.getElementById("timer-left");
 var quizMain = document.getElementsByClassName("quizbody");
 
 var secondsLeft = 60;
+var score = 0;
 
+for (var i = 0; i < questions.length; i++) {
+        var response = window.prompt(questions[i].prompt)
+        if(response == questions[i].answer){
+                score++;
+                alert("Correct!");
+        } else {
+                alert ("Wrong!");
+        }
+}
+alert("You got " + score + "/" + questions.length")
 startButton.addEventListener("click", function () {
-    timerText.textContent = secondsLeft;
+
+    timerText.innerText = secondsLeft;
 
     var timerInterval = setInterval(function () {
         secondsLeft--;

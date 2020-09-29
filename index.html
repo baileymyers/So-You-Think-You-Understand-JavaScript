@@ -8,23 +8,27 @@
     <title>So You Think You Understand JavaScript?</title>
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light">
-        <span class="navbar-text">
-          View Highscores
-        </span>
-        <span>Time: <span class="timer-text">0</span></span>
-      </nav>
-    <main class="container">
-    <div class="row">
-        <div class="col-12 quizbody">
-            <h1 class="quiz-name">So You Think You Understand JavaScript?</h1>
-            <p>
-                Prove how much you really understand about Javascript by taking this 60-second quiz.
-            </p>
-            <p>
-                You get a point for every correct answer. If you answer incorrectly, you lose 3 seconds on the clock!
-            </p>
-            <button type="button" class="btn btn-info start-btn">I'm Ready</button>
+            <div class="card text-center">
+                <div class="card-header">
+                  <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#">Quiz</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Highscores</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Time: <span id="time-left">0</span></a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">So You Think You Understand JavaScript?</h5>
+                  <p class="card-text">Prove how much you really understand about Javascript by taking this 60-second quiz.</p>
+                  <p class="card-text">You get a point for every correct answer. If you answer incorrectly, you lose 3 seconds on the clock.</p>
+                  <a href="#" class="btn btn-primary">Start</a>
+                </div>
+              </div>
         </div>
     </div>
     </main>
