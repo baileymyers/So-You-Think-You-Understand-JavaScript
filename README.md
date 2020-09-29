@@ -1,8 +1,4 @@
 <p align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
   <h3 align="center">JavaScript Quiz App</h3>
 
   <p align="center">
@@ -38,7 +34,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://baileymyers.github.io/So-You-Think-You-Understand-JavaScript/)
 
 This quiz application tests the user's JavaScript knowledge. Questions are shown in random order, and the user is alotted 30 seconds to answer all questions. Each time a question is answered correctly, 1 point is added to the user's total score and the document background and correct answer are color coded green to indicate to the user that they answered correctly. Each time a question is answered incorrectly, 5 seconds are deducted from the timer.
 
@@ -47,6 +43,8 @@ The quiz ends when all questions are answered or time expires.
 The user can save their score to the highscore board under their initials.
 
 The Highscore Board is located on a different tab within the application and shows the top scores. The user can clear/reset this scoreboard at any point.
+
+[Project Link](https://baileymyers.github.io/So-You-Think-You-Understand-JavaScript/)
 
 
 ### Built With
