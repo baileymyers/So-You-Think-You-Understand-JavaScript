@@ -3,35 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css">
-    <title>So You Think You Understand JavaScript?</title>
+    <link href="./style.css" rel="stylesheet">
+    <script defer src="./script.js"></script>
+    <title>JavaScript Quiz</title>
 </head>
 <body>
-            <div class="card text-center">
-                <div class="card-header">
-                  <ul class="nav nav-pills card-header-pills">
-                    <li class="nav-item">
-                      <a class="nav-link active" href="#">Quiz</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Highscores</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Time: <span id="time-left">0</span></a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">So You Think You Understand JavaScript?</h5>
-                  <p class="card-text">Prove how much you really understand about Javascript by taking this 60-second quiz.</p>
-                  <p class="card-text">You get a point for every correct answer. If you answer incorrectly, you lose 3 seconds on the clock.</p>
-                  <a href="#" class="btn btn-primary">Start</a>
-                </div>
-              </div>
+    <nav class="nav-bar">
+            <a class="link" id="active" href="#question-container">Quiz</a>
+            <a class="link" id="highscores" href="#highscores">Highscores</a>
+            <a id="time">Time: <span id="time-left">0</span></a>
+            <a id="score">Score: <span id="total-score">0</span></a>
+    </nav>
+    <div class="container">
+        <div class="highscores-container hide"></div>
+        <div id="question-container" class="hide"></div>
+        <div id="quiz-name">
+            <h1>So You Think You Understand JavaScript?</h1>
+            <p>
+                Prove how well you understand JavaScript by taking this quiz.
+                <br>
+                Once you click Start, you have 30 seconds to answer all of the questions.
+                <br>
+                <br>
+                Correct Answers = 1 point
+                <br>
+                Wrong Answers = -5 seconds
+            </p>
+            <hr>
+        </div>
+            <div id="question"></div>
+            <div id="answer-buttons" class="btn-grid">
+            </div>
+        <div class="controls">
+            <button id="start-btn" class="start-btn btn">Start</button>
+            <button id="next-btn" class="next-btn btn hide">Next</button>
         </div>
     </div>
-    </main>
-    <script src="./script.js"></script>
 </body>
 </html>

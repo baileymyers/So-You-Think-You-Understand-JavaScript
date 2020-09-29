@@ -1,51 +1,129 @@
-/*
-*
-*
-PSUEDOCODE~
-1. PAGE THAT EXPLAINS QUIZ AND OFFERS A START BUTTON
-        a. VIEW HIGHSCORES LINK IS SOMEWHERE IN A CORNER ON THE PAGE
-2. WHEN BUTTON IS CLICKED, FIRST QUESTION APPEARS
-        a. TIMER BEGINS AT 60 SECONDS IN A CORNER.
-3. USER CHOOSES ANSWER.
-        a. IF CORRECT, SMALL MESSAGE APPEARS THAT TELLS USER THEY CHOSE CORRECTLY AND POINT ADDED TO TOTAL SCORE..
-        b. IF INCORRECT, SMALL MESSAGE APPEARS THAT TELLS USER THEY CHOSE INCORRECTLY AND 3 SECONDS IS DEDUCTED FROM TIMER.
-        c. NEXT QUESTION IS REVEALED.
-        d. REPEAT.
-4. WHEN ALL QUESTIONS ARE ANSWERED **OR** TIMER RUNS OUT, USER IS PRESENTED THEIR TOTAL SCORE.
-        a. USER CAN INPUT THEIR INITIALS TO TRACK WITH HIGHSCORE.
-        b. SCORE IS STORED ON HIGHSCORE PAGE.
-        c. USER IS PRESENTED OPTION TO RETAKE QUIZ OR CLEAR HIGHSCORES.
-*
-*
-*/
+const startButton = document.getElementById('start-btn');
+const nextButton = document.getElementById('next-btn');
+const questionContainerElement = document.getElementById('question-container');
+const questionElement = document.getElementById('question');
+const answerButtonsElement = document.getElementById('answer-buttons');
+const highscoreButtonsElement = document.getElementById('highscores');
 
-var startButton = document.getElementById("start");
-var timerText = document.getElementById("timer-left");
-var quizMain = document.getElementsByClassName("quizbody");
+let shuffledQuestions, currentQuestionIndex;
 
-var secondsLeft = 60;
-var score = 0;
+var score
 
-for (var i = 0; i < questions.length; i++) {
-        var response = window.prompt(questions[i].prompt)
-        if(response == questions[i].answer){
-                score++;
-                alert("Correct!");
-        } else {
-                alert ("Wrong!");
+startButton.addEventListener('click', startGame);
+nextButton.addEventListener('click', () => {
+        currentQuestionIndex++;
+        setNextQuestion();
+})
+
+
+function startGame() {
+        console.log('Started');
+        startButton.classList.add('hide');
+        shuffledQuestions = questions.sort(() => Math.random() - .5);
+        currentQuestionIndex = 0;
+        questionContainerElement.classList.remove('hide');
+        setNextQuestion();
+}
+
+function setNextQuestion() {
+        resetState();
+        showQuestion(shuffledQuestions[currentQuestionIndex])
+}
+
+function showQuestion(question) {
+        questionElement.innerText = question.question;
+        question.answers.forEach(answer => {
+                const button = document.createElement('button');
+                button.innerText = answer.text;
+                button.classList.add('btn');
+                if (answer.correct) {
+                        button.dataset.correct = answer.correct;
+                }
+                button.addEventListener('click', selectAnswer);
+                answerButtonsElement.appendChild(button);
+        })
+}
+
+function resetState() {
+        clearStatusClass(document.body);
+        nextButton.classList.add('hide');
+        while (answerButtonsElement.firstChild) {
+                answerButtonsElement.removeChild(answerButtonsElement.firstChild)
         }
 }
-alert("You got " + score + "/" + questions.length")
-startButton.addEventListener("click", function () {
 
-    timerText.innerText = secondsLeft;
-
-    var timerInterval = setInterval(function () {
-        secondsLeft--;
-        timerText.textContent = secondsLeft + "s";
-
-        if(secondsLeft === 0) {
-            clearInterval(timerInterval);
+function selectAnswer(e) {
+        const selectedButton = e.target
+        const correct = selectedButton.dataset.correct;
+        setStatusClass(document.body, correct);
+        Array.from(answerButtonsElement.children).forEach(button => {
+                setStatusClass(button, button.dataset.correct);
+        })
+        if (shuffledQuestions.length > currentQuestionIndex + 1) {
+                nextButton.classList.remove('hide');
+        } else {
+                startButton.innerText = 'Restart';
+                startButton.classList.remove('hide');
         }
-    }, 1000)
-})
+        
+}
+
+function setStatusClass(element, correct) {
+        clearStatusClass(element);
+        if (correct) {
+                element.classList.add('correct')
+        } else {
+                element.classList.add('wrong')
+        }
+}
+
+function clearStatusClass(element) {
+        element.classList.remove('correct');
+        element.classList.remove('wrong');
+}
+
+const questions = [
+        {
+                question: 'What is the correct HTML syntax to link an external JavaScript file?',
+                answers: [
+                        { text: '<script.js></script>', correct: false },
+                        { text: '<script src="xyz.js"></script>', correct: true },
+                        { text: '<script href="xyz.js"></script>', correct: false },
+                        { text: '<script link="xyz.js"></script>', correct: false },
+                ]
+        },
+        {
+                question: 'How do you call a function name "functionName"?',
+                answers: [
+                        { text: 'functionName();', correct: true },
+                        { text: 'call functionName();', correct: false },
+                        { text: 'call.functionName;"></script>', correct: false },
+                        { text: 'functionName = call();', correct: false },
+                ]
+        },
+        {
+                question: 'How do you declare a JavaScript variable?',
+                answers: [
+                        { text: 'createVariable = variableName;', correct: false },
+                        { text: 'v variableName;', correct: false },
+                        { text: 'declare.variableName;', correct: false },
+                        { text: 'var variableName;', correct: true },
+                ]
+        },
+        {
+                question: 'How do you write an "if" statement in JavaScript?',
+                answers: [
+                        { text: 'if (i == 5)', correct: true },
+                        { text: 'if i = 5', correct: false },
+                        { text: 'if (i = 5) then', correct: false },
+                        { text: 'if i === 5 then', correct: false },
+                ]
+        },
+        {
+                question: 'JavaScript is the same as Java.',
+                answers: [
+                        { text: 'True', correct: false },
+                        { text: 'False', correct: true },
+                ]
+        }
+]

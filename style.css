@@ -1,20 +1,132 @@
-nav {
-    color: darkslategray;
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.quizbody {
-    background-color: rgb(211, 38, 38);
-    height: 500px;
-    width: auto;
+:root {
+    --hue-neutral: 900;
+    --hue-wrong: 0;
+    --hue-correct: 800;
+}
+
+.nav-bar {
+    background-color: white;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.nav-bar a {
+    float: left;
+    color: black;
     text-align: center;
-    padding-top: 175px;
-    color: darkslategray;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
 
-.quiz-name {
-    margin-bottom: 30px;
+#active {
+    background-color: black;
+    color: white;
 }
 
-.start-btn {
+.link:hover {
+    background-color: gray;
+    color: white;
+}
+
+#time {
+    float: right;
+}
+
+#score {
+    float: right;
+}
+
+#quiz-name {
+    text-align: center;
+}
+
+#question {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.2rem;
     margin-top: 20px;
+}
+
+body {
+    --hue: var(--hue-neutral);
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(var(--hue), 100%, 20%);
+}
+
+body.correct {
+    --hue: var(--hue-correct);
+}
+
+body.wrong {
+    --hue: var(--hue-wrong);
+}
+
+.container {
+    width: 800px;
+    max-width: 80%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0px;
+}
+
+.btn {
+    --hue: var(--hue-neutral);
+    border: 1px solid hsl(var(--hue), 100%, 5%);
+    background-color: hsl(var(--hue), 60%, 30%);
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: white;
+    outline: none;
+}
+
+.btn:hover {
+    border-color: hsl(var(--hue), 100%, 50%);
+    cursor: pointer;
+}
+
+.btn.correct {
+    --hue: var(--hue-correct);
+    color: black;
+}
+
+.btn.wrong {
+    --hue: var(--hue-wrong);
+}
+
+.start-btn, .next-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide {
+    display: none;
 }
