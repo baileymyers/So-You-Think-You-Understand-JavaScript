@@ -4,10 +4,11 @@ const questionContainerElement = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
 const highscoreButtonsElement = document.getElementById('highscores');
+const highscoresContainerElement = document.getElementById('highscores-container');
+const scoreElement = document.getElementById('score');
+const quizNameElement = document.getElementById('quiz-name');
 
 let shuffledQuestions, currentQuestionIndex;
-
-var score
 
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
@@ -15,6 +16,13 @@ nextButton.addEventListener('click', () => {
         setNextQuestion();
 })
 
+function showHighScores() {
+        questionContainerElement.classList.add('hide');
+        highscoresContainerElement.classList.remove('hide');
+        // quizNameElement.classList.add('hide');
+}
+
+highscoreButtonsElement.addEventListener('click', showHighScores());
 
 function startGame() {
         console.log('Started');

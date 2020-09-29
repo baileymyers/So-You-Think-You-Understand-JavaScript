@@ -103,12 +103,13 @@ body.wrong {
 
 .btn:hover {
     border-color: hsl(var(--hue), 100%, 50%);
+    background-color: hsl(var(--hue), 100%, 35%);
     cursor: pointer;
 }
 
 .btn.correct {
     --hue: var(--hue-correct);
-    color: black;
+    color: white;
 }
 
 .btn.wrong {
