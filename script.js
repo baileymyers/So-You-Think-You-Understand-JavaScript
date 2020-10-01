@@ -5,8 +5,10 @@ const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
 const highscoreButtonsElement = document.getElementById('highscores');
 const highscoresContainerElement = document.getElementById('highscores-container');
-const scoreElement = document.getElementById('score');
-const quizNameElement = document.getElementById('quiz-name');
+var scoreElement = document.querySelector('#total-score');
+var quizNameElement = document.getElementById('quiz-name');
+
+var scoreCount = localStorage.getItem("count");
 
 let shuffledQuestions, currentQuestionIndex;
 
@@ -16,16 +18,11 @@ nextButton.addEventListener('click', () => {
         setNextQuestion();
 })
 
-function showHighScores() {
-        questionContainerElement.classList.add('hide');
-        highscoresContainerElement.classList.remove('hide');
-        // quizNameElement.classList.add('hide');
-}
-
-highscoreButtonsElement.addEventListener('click', showHighScores());
 
 function startGame() {
         console.log('Started');
+        console.log(scoreElement);
+        scoreElement.textContent = scoreCount;
         startButton.classList.add('hide');
         shuffledQuestions = questions.sort(() => Math.random() - .5);
         currentQuestionIndex = 0;
@@ -46,6 +43,10 @@ function showQuestion(question) {
                 button.classList.add('btn');
                 if (answer.correct) {
                         button.dataset.correct = answer.correct;
+                        scoreCount++;
+                        scoreElement.textContent = parseInt(scoreCount);
+
+                        localStorage.setItem("count", scoreCount)
                 }
                 button.addEventListener('click', selectAnswer);
                 answerButtonsElement.appendChild(button);
